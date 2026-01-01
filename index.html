@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRMランチパッケージ | 完全丸投げのDRM構築サービス</title>
+    <meta name="description" content="UTAGEもLPもステップメールも、全部丸投げ。あなたは魂を吹き込むだけ。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-danger: #CC0000;
+            --color-danger-dark: #990000;
+            --color-black: #1A1A1A;
+            --color-text: #333333;
+            --color-gray: #666666;
+            --color-light-gray: #E8E8E8;
+            --color-white: #FFFFFF;
+            --color-bg-light: #F8F8F8;
+            --color-accent: #D4AF37;
+            --color-highlight: #FFF9E6;
+            --color-border: #DDDDDD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--color-white);
+            color: var(--color-text);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1A1A1A 0%, #333333 100%);
+            color: var(--color-white);
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 8px solid var(--color-danger);
+        }
+
+        .hero-warning {
+            display: inline-block;
+            background: var(--color-danger);
+            color: var(--color-white);
+            padding: 12px 30px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(204, 0, 0, 0.4);
+        }
+
+        .hero-headline {
+            font-family: 'Archivo Black', 'Noto Sans JP', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.3;
+            margin-bottom: 30px;
+        }
+
+        .hero-subheadline {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            line-height: 1.7;
+            margin-bottom: 50px;
+            opacity: 0.95;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--color-bg-light);
+        }
+
+        .section-title {
+            font-family: 'Archivo Black', 'Noto Sans JP', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.3;
+            margin-bottom: 40px;
+            color: var(--color-black);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 900;
+            line-height: 1.5;
+            margin: 50px 0 30px;
+            color: var(--color-danger);
+            border-left: 5px solid var(--color-danger);
+            padding-left: 20px;
+        }
+
+        /* Text Content */
+        .text-block {
+            margin-bottom: 40px;
+        }
+
+        .text-block p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .text-block strong,
+        .highlight {
+            color: var(--color-danger);
+            font-weight: 900;
+        }
+
+        .marker {
+            background: linear-gradient(transparent 60%, var(--color-highlight) 60%);
+            padding: 2px 4px;
+        }
+
+        .emphasis-box {
+            background: var(--color-white);
+            border: 3px solid var(--color-danger);
+            border-left: 8px solid var(--color-danger);
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .emphasis-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--color-danger);
+            font-weight: 900;
+        }
+
+        /* Product Box */
+        .product-box {
+            background: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+            color: var(--color-white);
+            padding: 60px;
+            margin: 60px 0;
+            text-align: center;
+            border: 5px solid var(--color-accent);
+            position: relative;
+        }
+
+        .product-box::before,
+        .product-box::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--color-accent);
+        }
+
+        .product-box::before {
+            top: -5px;
+            left: -5px;
+        }
+
+        .product-box::after {
+            bottom: -5px;
+            right: -5px;
+        }
+
+        .product-name {
+            font-family: 'Archivo Black', 'Noto Sans JP', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            color: var(--color-accent);
+        }
+
+        .product-tagline {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: var(--color-bg-light);
+            padding: 40px;
+            margin: 40px 0;
+            border-left: 8px solid var(--color-accent);
+        }
+
+        .case-study-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--color-danger);
+        }
+
+        .case-study-arrow {
+            font-size: 2rem;
+            color: var(--color-danger);
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Author Box */
+        .author-box {
+            background: var(--color-white);
+            border: 3px solid var(--color-border);
+            padding: 50px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .author-name {
+            font-family: 'Archivo Black', 'Noto Sans JP', sans-serif;
+            font-size: 2.5rem;
+            color: var(--color-danger);
+            margin-bottom: 20px;
+        }
+
+        .author-title {
+            font-size: 1.2rem;
+            color: var(--color-gray);
+            margin-bottom: 30px;
+        }
+
+        /* Benefits List */
+        .benefits-list {
+            list-style: none;
+            margin: 40px 0;
+        }
+
+        .benefits-list li {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: var(--color-white);
+            border-left: 5px solid var(--color-danger);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefits-list li::before {
+            content: "✓";
+            color: var(--color-danger);
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        /* Price Box */
+        .price-section {
+            background: var(--color-bg-light);
+            padding: 60px;
+            margin: 60px 0;
+            text-align: center;
+            border: 5px dashed var(--color-danger);
+        }
+
+        .price-label {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--color-gray);
+        }
+
+        .original-price {
+            font-size: 2rem;
+            text-decoration: line-through;
+            color: var(--color-gray);
+            margin-bottom: 20px;
+        }
+
+        .special-price {
+            font-family: 'Archivo Black', 'Noto Sans JP', sans-serif;
+            font-size: 4rem;
+            color: var(--color-danger);
+            margin-bottom: 30px;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-dark) 100%);
+            color: var(--color-white);
+            padding: 30px 60px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-decoration: none;
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(204, 0, 0, 0.3);
+            cursor: pointer;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(204, 0, 0, 0.4);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-guarantee {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--color-gray);
+        }
+
+        /* Guarantee Badge */
+        .guarantee-badge {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-black);
+            padding: 10px 25px;
+            font-weight: 900;
+            margin: 20px 0;
+        }
+
+        /* Q&A Section */
+        .qa-item {
+            margin-bottom: 40px;
+            background: var(--color-white);
+            padding: 30px;
+            border-left: 5px solid var(--color-danger);
+        }
+
+        .qa-question {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: var(--color-danger);
+        }
+
+        .qa-question::before {
+            content: "Q: ";
+            color: var(--color-danger);
+        }
+
+        .qa-answer {
+            line-height: 1.8;
+        }
+
+        .qa-answer::before {
+            content: "A: ";
+            font-weight: 900;
+            color: var(--color-black);
+        }
+
+        /* PS Section */
+        .ps-section {
+            background: var(--color-bg-light);
+            padding: 40px;
+            margin: 60px 0;
+            border: 3px solid var(--color-danger);
+        }
+
+        .ps-title {
+            font-weight: 900;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--color-danger);
+        }
+
+        /* Bonus Box */
+        .bonus-box {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFFEF8 100%);
+            border: 3px solid var(--color-accent);
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .bonus-title {
+            font-family: 'Archivo Black', 'Noto Sans JP', sans-serif;
+            font-size: 1.8rem;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .bonus-item {
+            background: var(--color-white);
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid var(--color-accent);
+        }
+
+        .bonus-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--color-danger);
+            font-weight: 900;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-black);
+            color: var(--color-white);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--color-white);
+            text-decoration: underline;
+            margin: 0 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .hero {
+                padding: 50px 0;
+            }
+
+            .product-box,
+            .price-section {
+                padding: 40px 20px;
+            }
+
+            .emphasis-box,
+            .author-box {
+                padding: 30px 20px;
+            }
+
+            .cta-button {
+                padding: 25px 40px;
+                font-size: 1.3rem;
+                width: 100%;
+            }
+
+            .special-price {
+                font-size: 3rem;
+            }
+        }
+
+        /* Sticky CTA Bar (Mobile) */
+        @media (max-width: 768px) {
+            .sticky-cta {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--color-danger);
+                padding: 15px;
+                box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+            }
+
+            .sticky-cta .cta-button {
+                padding: 18px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <div class="hero-warning">⚠ 警告 WARNING ⚠</div>
+            <h1 class="hero-headline">
+                そのパソコン作業、<br>今すぐやめろ。<br>
+                お前の時給は、<br>いつまで「0円」のままなんだ?
+            </h1>
+            <p class="hero-subheadline">
+                画面の前でCSSと格闘し、UTAGEの連携エラーに頭を抱えているお前。<br>
+                はっきり言う。その時間は、ドブに捨てているのと同じだ。
+            </p>
+        </div>
+    </div>
+
+    <!-- Problem Section -->
+    <section>
+        <div class="container">
+            <div class="text-block">
+                <p>
+                    お前はエンジニアか? デザイナーか?<br>
+                    違うはずだ。自分の商品で客を幸せにする<span class="marker"><strong>「起業家」</strong></span>のはずだ。
+                </p>
+                <p>
+                    なのに、なぜ裏方の雑用に命(時間)を削っている?
+                </p>
+            </div>
+
+            <div class="emphasis-box">
+                <h3>「地図(ノウハウ)」はもう捨てろ。<br>俺が用意したのは、目的地まで運ぶ「タクシー(実装)」だ。</h3>
+                <p>
+                    「やり方」を教える講座はもういい。<br>
+                    お前が欲しいのは、勉強の時間じゃなく<span class="marker"><strong>「売上が立つ結果」</strong></span>だけのはずだ。
+                </p>
+                <p>
+                    だから、俺が作った。<br>
+                    袋を開ければすぐに食えるランチパックのように。<br>
+                    納品された瞬間から集客と販売が始まる、<span class="marker"><strong>完全丸投げの極致</strong></span>。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Introduction -->
+    <section style="background: var(--color-white);">
+        <div class="container">
+            <div class="product-box">
+                <p style="font-size: 1.2rem; margin-bottom: 20px;">AI × UTAGE × プロの職人芸</p>
+                <h2 class="product-name">DRM<br>ランチパッケージ</h2>
+                <p class="product-tagline">ついに、一般解禁。</p>
+            </div>
+
+            <div class="text-block" style="text-align: center; margin-top: 50px;">
+                <p style="font-size: 1.3rem; font-weight: 700;">
+                    お前がやることは一つ。<span class="marker"><strong>「魂(コンテンツ)」を吹き込むことだけ。</strong></span>
+                </p>
+                <p>
+                    面倒な配線、デザイン、ライティング、動線設計。<br>
+                    すべて俺たちが裏で終わらせる。
+                </p>
+                <p style="font-size: 1.2rem; margin-top: 30px;">
+                    お前は、マイクを持って話すだけでいい。<br>
+                    <strong>それ以外に時間を使うな。時間は命だ。</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Deepening -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">自由になるために起業したお前が<br>なぜ、深夜3時までモニターと睨めっこしている?</h2>
+            
+            <div class="text-block">
+                <p>
+                    「仕組み化すれば楽になる」<br>
+                    そう信じて高額なツールを契約し、分厚いマニュアルを読み漁る。
+                </p>
+                <p>だが現実はどうだ?</p>
+                <p>
+                    ステップメールが届かない。決済が連携されない。LPのデザインが崩れる。<br>
+                    自由どころか、<span class="marker"><strong>ツールの奴隷になり下がっているのが現実だ。</strong></span>
+                </p>
+            </div>
+
+            <h3 class="section-subtitle">「全部自分でやる」という美学は<br>ビジネスにおいては「自殺行為」と呼ぶ。</h3>
+            
+            <div class="text-block">
+                <p>厳しいことを言うが、聞いてくれ。<br>お前の寿命は無限じゃない。</p>
+                <p>
+                    慣れないツール操作に3週間かける間に、<br>
+                    競合はプロを使って3日でリリースし、お前の客を奪っていく。
+                </p>
+                <p>
+                    「頑張って作りました」なんて、市場は評価しない。<br>
+                    評価されるのは<span class="marker"><strong>「価値を届けた数」</strong></span>だけだ。
+                </p>
+            </div>
+
+            <div class="emphasis-box">
+                <h3>お前の計算機は壊れていないか?<br>その「悩み時間」による損失は、数百万単位だ。</h3>
+                <p>
+                    技術的なトラブルで手が止まっている時間。<br>
+                    その間に失った「本来得られたはずの売上(機会損失)」を計算したことがあるか?
+                </p>
+                <p>
+                    おそらく、外注費の何倍もの金を、お前は見えないところでドブに流している。<br>
+                    <span class="marker"><strong>自分でやろうとするその姿勢こそが、お前の貧乏の原因だ。</strong></span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Detail -->
+    <section style="background: var(--color-white);">
+        <div class="container">
+            <h2 class="section-title">迷路(個別最適化)は作らない。<br>俺が作るのは、成約への「高速道路」一本だけだ。</h2>
+            
+            <div class="text-block">
+                <p>
+                    コンサルタントはよく言う。「あなたに合わせたオーダーメイドの仕組みを...」<br>
+                    寝言は寝て言え。
+                </p>
+                <p>
+                    売れる型(パターン)なんて、すでに決まっている。
+                </p>
+                <p>
+                    俺たちが提供するのは、過去の膨大なテストで<span class="marker"><strong>「最も効率よく売れた型」</strong></span>そのものだ。<br>
+                    車輪の再発明をするな。勝てるレールに乗れ。
+                </p>
+            </div>
+
+            <div class="text-block" style="text-align: center; margin-top: 60px;">
+                <p style="font-size: 1.3rem; font-weight: 700;">
+                    お前に残された仕事は<span class="marker"><strong>「魂」</strong></span>を入れること。<br>
+                    それ以外は、すべてノイズだ。
+                </p>
+                <p style="margin-top: 30px;">
+                    お前の頭の中にある素晴らしいノウハウや想い。<br>
+                    それだけを俺たちに渡してくれ。
+                </p>
+                <p>
+                    それをどうやって見込み客に届けるか、どうやって欲しくさせるか。<br>
+                    その<span class="marker"><strong>「翻訳」と「運搬」</strong></span>は、プロである俺たちの仕事だ。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Introduction -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">俺は、才能ある人間が<br>「システムごとき」で死ぬのを見るのが一番嫌いだ。</h2>
+            
+            <div class="author-box">
+                <h3 class="author-name">サキムラ</h3>
+                <p class="author-title">DRM構築プロフェッショナル</p>
+                <div class="text-block" style="text-align: left;">
+                    <p>
+                        申し遅れた。サキムラだ。<br>
+                        普段は裏方として、億を稼ぐプレイヤーたちのDRM(ダイレクト・レスポンス・マーケティング)を構築している。
+                    </p>
+                    <p>なぜこのサービスを作ったか?<br><strong>怒りだ。</strong></p>
+                    <p>
+                        本物のコンテンツを持っているのに、<br>
+                        「LPが作れない」「メルマガの設定がわからない」<br>
+                        たったそれだけの理由で、詐欺師みたいな奴らに負けていく起業家を腐るほど見てきた。
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="section-subtitle">「時間は命」<br>これは比喩じゃない。物理的な事実だ。</h3>
+            
+            <div class="text-block">
+                <p>
+                    俺はロマンチストじゃない。徹底的なリアリストだ。<br>
+                    数字とロジック、そして効率しか愛せない。
+                </p>
+                <p>だからこそ断言する。</p>
+                <p>
+                    お前がシステム構築に費やす1時間は、<span class="marker"><strong>命の浪費だ。</strong></span><br>
+                    その無駄を極限まで削ぎ落とし、最短最速で市場に価値を届ける。<br>
+                    それが俺の仕事であり、このサービスの存在意義だ。
+                </p>
+            </div>
+
+            <div class="emphasis-box">
+                <h3>AIは魔法使いじゃない。「増幅装置」だ。<br>だからこそ、乗り手(プロ)が必要になる。</h3>
+                <p>
+                    最近は「AIを使えば誰でもできる」という甘言が溢れている。<br>
+                    嘘だ。
+                </p>
+                <p>
+                    AIは、ゴミを入れればゴミを高速で量産するだけの機械だ。
+                </p>
+                <p>
+                    俺たちは、熟練のマーケターの脳みそをAIに実装し、<br>
+                    それをUTAGEという最強の箱に組み込んだ。<br>
+                    <span class="marker"><strong>素人のAI活用と、プロのAI実装。その次元の違いを見せてやる。</strong></span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 1 -->
+    <div class="cta-container">
+        <a href="#order" class="cta-button">今すぐDRMランチパッケージに申し込む</a>
+        <p class="cta-guarantee">
+            <span class="guarantee-badge">30日間全額返金保証</span>
+        </p>
+    </div>
+
+    <!-- Case Studies -->
+    <section style="background: var(--color-white);">
+        <div class="container">
+            <h2 class="section-title">「私の業界は特殊だから...」<br>その言い訳が、お前の成長を止めている。</h2>
+            
+            <div class="text-block">
+                <p>
+                    恋愛系だろうが、語学系だろうが、投資系だろうが関係ない。<br>
+                    人間が財布を開く瞬間の心理プロセスは、<br>
+                    <span class="marker"><strong>紀元前から何一つ変わっていないからだ。</strong></span>
+                </p>
+                <p>
+                    俺たちが作るのは、その「人間の本能」に突き刺さる導線だ。<br>
+                    業界の特殊性なんぞ、誤差の範囲でしかない。
+                </p>
+            </div>
+
+            <div class="case-study">
+                <h4 class="case-study-title">【事例1】構築3ヶ月で挫折寸前の英語コーチ</h4>
+                <p>
+                    彼は英語を教える天才だったが、パソコン音痴だった。<br>
+                    UTAGEの設定画面を見ただけで頭痛がすると言っていた。
+                </p>
+                <div class="case-study-arrow">↓</div>
+                <p style="font-size: 1.3rem; font-weight: 900; color: var(--color-danger);">
+                    丸投げから1週間でファネル完成、初月120万。
+                </p>
+                <p style="margin-top: 20px;">
+                    俺たちが介入し、全てを代行した結果どうなったか?<br>
+                    彼は生徒への指導だけに集中できるようになり、<br>
+                    システムが勝手に集客し、勝手に商品を販売してくれるようになった。
+                </p>
+            </div>
+
+            <div class="case-study">
+                <h4 class="case-study-title">【事例2】ブログ更新に疲れた物販スクール講師</h4>
+                <p>
+                    毎日ブログを書き、SNSでリプ周りをしていた彼女。<br>
+                    「ランチパッケージ」導入後は、それら全てをやめた。
+                </p>
+                <div class="case-study-arrow">↓</div>
+                <p style="font-size: 1.3rem; font-weight: 900; color: var(--color-danger);">
+                    自動化により労働時間1/10、売上は3倍に。
+                </p>
+                <p style="margin-top: 20px;">
+                    代わりに、濃い見込み客だけが自動的にLINEに集まり、<br>
+                    教育動画が勝手に価値を伝え、面談希望が入る。<br>
+                    彼女は今、家族との時間を楽しみながら、過去最高の利益を出している。
+                </p>
+            </div>
+
+            <div class="emphasis-box" style="text-align: center;">
+                <h3>これが「仕組み」の力だ。<br>お前の努力不足じゃない。構造の問題だ。</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bonuses -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">「特典」なんて安っぽい言葉は嫌いだが<br>お前を絶対に失敗させたくないから、これも付ける。</h2>
+            
+            <div class="text-block">
+                <p>
+                    商品だけで十分すぎる価値はある。自信もある。<br>
+                    だが、お前が「運用でつまづく」可能性を1ミリでも減らしたい。<br>
+                    だから、俺の身を削ってでもこれを用意した。
+                </p>
+            </div>
+
+            <div class="bonus-box">
+                <h3 class="bonus-title">🎁 四大特典</h3>
+                
+                <div class="bonus-item">
+                    <h4>特典1: コンセプト設計「鬼の壁打ち」権利</h4>
+                    <p style="margin-bottom: 10px; color: var(--color-gray);">(通常価格: プライスレス)</p>
+                    <p>
+                        仕組みが良くても、商品コンセプトがゴミなら売れない。<br>
+                        だから、構築前にお前のコンセプトを俺が直接診断する。<br>
+                        ズレていれば容赦なくダメ出しする。<br>
+                        泣くかもしれないが、売れない商品を売るよりマシだろう?
+                    </p>
+                </div>
+
+                <div class="bonus-item">
+                    <h4>特典2: 裏・運用マスター講座(全7回)</h4>
+                    <p style="margin-bottom: 10px;"><strong>「納品後、どうやって拡大するか?」の極意。</strong></p>
+                    <p>
+                        仕組みは渡した。あとは運転するだけだ。<br>
+                        だが、ペーパードライバーにフェラーリを渡しても事故るだけだ。<br>
+                        だから、<strong>「このマシンの乗りこなし方(集客・運用)」</strong>を徹底的に解説した動画講義を付ける。<br>
+                        これを見れば、アクセルの踏み方が分かる。
+                    </p>
+                </div>
+
+                <div class="bonus-item">
+                    <h4>特典3: 購入者限定「裏Discord」招待状</h4>
+                    <p style="margin-bottom: 10px;"><strong>孤独な戦いは、もう終わりだ。</strong></p>
+                    <p>
+                        ここには、同じように「ランチパッケージ」を手にした猛者たちが集う。<br>
+                        成果報告、運用の悩み、最新のアルゴリズム情報。<br>
+                        <strong>質の高い一次情報が飛び交う「秘密基地」</strong>へのアクセス権を渡す。<br>
+                        ROM専でもいい。そこにいるだけで基準値が上がる。
+                    </p>
+                </div>
+
+                <div class="bonus-item">
+                    <h4>特典4: リピート割・優先対応パス</h4>
+                    <p style="margin-bottom: 10px;"><strong>「2つ目の仕組み」が欲しくなった時のために。</strong></p>
+                    <p>
+                        断言する。1つ目が回り始めると、必ず味を占めて「2つ目も作りたい」と言い出す。<br>
+                        その時、お前はすでに「お得意様」だ。<br>
+                        一般の列を飛ばして、優先的かつ特別価格で対応する。<br>
+                        ビジネスを加速させる「ファストパス」だと思ってくれ。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section style="background: var(--color-white);">
+        <div class="container">
+            <h2 class="section-title">【異常な保証】気に入らなければ金はイラネェ。<br>全額返してやるから、さっさと他へ行け。</h2>
+            
+            <div class="text-block">
+                <p>
+                    俺は、自分の仕事にプライドを持っている。<br>
+                    半端なゴミを納品して、小銭を恵んでもらうつもりはない。
+                </p>
+                <p style="margin-top: 30px; font-size: 1.3rem; font-weight: 700;">だから約束する。</p>
+                <p>
+                    納品されたLPやシステムを見て、「これじゃない」と1ミリでも思ったら言え。<br>
+                    <span class="marker"><strong>即座に全額返金する。</strong></span>
+                </p>
+            </div>
+
+            <div class="emphasis-box">
+                <h3>リスクは全て俺が背負う。<br>お前は「試す」ことすら怖がるのか?</h3>
+                <ul class="benefits-list">
+                    <li>納品クオリティが低い</li>
+                    <li>納期が守られない</li>
+                    <li>売れる予感がしない</li>
+                </ul>
+                <p style="margin-top: 30px;">
+                    もしそう感じたら、遠慮なく申し出ろ。<br>
+                    俺のリソースと時間をドブに捨てることになるが、それは俺の実力不足だ。甘んじて受け入れる。
+                </p>
+                <p style="margin-top: 20px; font-weight: 700;">
+                    だが、これだけリスクを排除してもまだ迷うなら、<br>
+                    お前はビジネスに向いていない。会社員に戻れ。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scarcity -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">【毎月3社限定】<br>これは「煽り」じゃない。物理的な「事実」だ。</h2>
+            
+            <div class="text-block">
+                <p>
+                    「限定って言って、実は何人でも受け入れるんでしょう?」<br>
+                    そう思っているなら、俺をそこらの詐欺師と一緒にするな。
+                </p>
+                <p style="margin-top: 30px;">
+                    俺たちのサービスは、AIを使いつつも、最終工程は俺とトップクリエイターが手作業で魂を吹き込む。<br>
+                    だから、<span class="marker"><strong>どう頑張っても月3社が限界だ。</strong></span><br>
+                    4社目を入れると、クオリティが落ちる。それは俺の美学に反する。
+                </p>
+            </div>
+
+            <div class="emphasis-box">
+                <h3>早い者勝ちだ。<br>席が埋まったら、問答無用でシャッターを下ろす。</h3>
+                <p>
+                    今、このページを見ているのはお前だけじゃない。<br>
+                    号外広告から流入した数百、数千の「飢えたライバル」たちが、同じ文章を読んでいる。
+                </p>
+                <p style="margin-top: 20px;">
+                    のんびりとお茶を飲んでいる間に、<br>
+                    <span class="marker"><strong>[SOLD OUT]</strong></span> に変わることになるぞ。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section style="background: var(--color-white);">
+        <div class="container">
+            <h2 class="section-title">計算機を出せ。<br>これから「価格崩壊」の現場を見せてやる。</h2>
+            
+            <div class="text-block">
+                <p>いいか、冷静に足し算をしてくれ。</p>
+                <ul class="benefits-list" style="margin-top: 30px;">
+                    <li>UTAGE構築一式: 相場 30万円〜</li>
+                    <li>プロのステップメール制作: 相場 50万円〜</li>
+                    <li>長文セールスレター制作: 相場 100万円〜</li>
+                    <li>サキムラのコンサル・特典: プライスレス(最低でも50万)</li>
+                </ul>
+                <p style="margin-top: 30px; font-size: 1.5rem; font-weight: 900; text-align: center;">
+                    合計:<span class="marker"><strong>230万円以上</strong></span>
+                </p>
+                <p style="text-align: center; margin-top: 20px;">これが、市場の適正価格だ。</p>
+            </div>
+
+            <div class="price-section">
+                <p class="price-label">だが、俺が提示するのは「230万」じゃない。<br>その「1/5」以下の、狂った価格だ。</p>
+                <p class="original-price">230万円</p>
+                <p class="special-price">39,800円</p>
+                <p style="font-size: 1.2rem; margin-top: 20px;">
+                    誤植じゃない。本気だ。
+                </p>
+                <p style="margin-top: 30px; line-height: 1.8;">
+                    飲み会数回分? くだらない教材1つ分?<br>
+                    そんな端金で、お前のビジネスに<span class="marker"><strong>「億を狙えるエンジン」</strong></span>が搭載される。
+                </p>
+            </div>
+
+            <div class="emphasis-box">
+                <h3>安すぎて怪しいか?<br>当然だ。だが、これには「裏」がある。</h3>
+                <p>なぜこんな価格で出すのか。</p>
+                <p>ボランティアじゃない。</p>
+                <p style="margin-top: 20px;">
+                    お前がこのシステムで稼ぎまくった後、俺の上位サービス(バックエンド)を買ってくれると信じているからだ。
+                </p>
+                <p style="margin-top: 20px;">
+                    だから、まずは圧倒的なGIVEで殴る。<br>
+                    俺はお前を勝たせる。それが俺の長期的な利益になるからだ。<br>
+                    <span class="marker"><strong>Win-Winなんて甘っちょろい関係じゃない。運命共同体だ。</strong></span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 2 -->
+    <div class="cta-container">
+        <a href="#order" class="cta-button">DRMランチパッケージを今すぐ手に入れる</a>
+        <p class="cta-guarantee">
+            <span class="guarantee-badge">30日間全額返金保証付き</span>
+        </p>
+    </div>
+
+    <!-- Q&A -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">【Q&A】まだ迷っているのか?<br>お前の脳内に残る「言い訳」を、俺が先回りして潰しておく。</h2>
+            
+            <div class="qa-item">
+                <p class="qa-question">本当に、ド素人の私でも使いこなせますか?</p>
+                <p class="qa-answer">
+                    質問が間違っている。「お前が使う」んじゃない。「俺たちが作る」んだ。<br>
+                    お前は完成した車の後部座席に座っていればいい。運転するのは俺たちだ。<br>
+                    スマホでLINEが返せる程度の知能があれば、運用は余裕で回る。安心しろ。
+                </p>
+            </div>
+
+            <div class="qa-item">
+                <p class="qa-question">UTAGEなどのツール代は別にかかりますか?</p>
+                <p class="qa-answer">
+                    当たり前だ。<br>
+                    携帯電話の本体を買っても、通信料を払わなきゃ電話はできないだろう? それと同じだ。<br>
+                    UTAGEの月額費(約2万円)すらケチるようなマインドなら、ビジネスなんてやめてしまえ。それは必要経費だ。
+                </p>
+            </div>
+
+            <div class="qa-item">
+                <p class="qa-question">今は金がないので、お金が溜まってからでもいいですか?</p>
+                <p class="qa-answer">
+                    ダメだ。「いつか」は一生来ない。<br>
+                    金がないから稼ぐんだろう? 順序が逆だ。<br>
+                    分割払いも用意している。飲み会を数回我慢すれば払える額だ。<br>
+                    借金してでも「種銭」を作るのが、起業家の最初の仕事だ。
+                </p>
+            </div>
+
+            <div class="qa-item">
+                <p class="qa-question">私の業界はかなり特殊なんですが...</p>
+                <p class="qa-answer">
+                    特殊なのはお前の思い込みだ。<br>
+                    相手が人間である以上、心理トリガーは共通している。<br>
+                    占い、整体、ドッグトレーナー、墓石販売。<br>
+                    あらゆる業界で実績が出ている。お前の業界だけ通用しないなんてことは、天変地異でも起きない限りありえない。
+                </p>
+            </div>
+
+            <div class="qa-item">
+                <p class="qa-question">本当に全額返金してくれますか?</p>
+                <p class="qa-answer">
+                    くどい。俺は嘘をつかない。<br>
+                    俺にとって39,800円なんて端金だ(失礼)。<br>
+                    そんな額で、俺の信用に傷がつく方が怖い。<br>
+                    気に入らなければ返金する。リスクはゼロだと言っているだろう。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Push -->
+    <section style="background: var(--color-white);">
+        <div class="container">
+            <h2 class="section-title">これが最後の確認だ。<br>お前は、このまま「手ぶら」で帰るつもりか?</h2>
+            
+            <div class="text-block">
+                <p>
+                    このページを閉じるのは簡単だ。右上の×ボタンを押せばいい。<br>
+                    だが、その瞬間、お前は元の世界に逆戻りだ。
+                </p>
+                <ul class="benefits-list" style="margin: 30px 0;">
+                    <li>相変わらず反応のないLP</li>
+                    <li>終わらない深夜の修正作業</li>
+                    <li>将来への漠然とした不安</li>
+                </ul>
+                <p>
+                    明日も、明後日も、その現実は続く。<br>
+                    俺なら耐えられない。
+                </p>
+            </div>
+
+            <div class="emphasis-box" style="margin-top: 50px;">
+                <h3>俺が渡すのは「代行サービス」じゃない。<br>お前の人生を取り戻す「切符」だ。</h3>
+                <p>
+                    俺たちが構築作業を肩代わりすることで、<br>
+                    お前には<span class="marker"><strong>「空いた時間」と「増えた売上」</strong></span>が残る。
+                </p>
+                <p style="margin-top: 20px;">
+                    その時間で、子供と遊んでもいい。<br>
+                    新しい事業を考えてもいい。<br>
+                    昼まで寝ていてもいい。
+                </p>
+                <p style="margin-top: 30px; font-size: 1.3rem; font-weight: 900;">
+                    「自由」を買う。<br>
+                    今回のオファーの本質は、そこにある。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main CTA -->
+    <section id="order" style="background: linear-gradient(135deg, #1A1A1A 0%, #333333 100%); color: var(--color-white); padding: 100px 0;">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-family: 'Archivo Black', 'Noto Sans JP', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 40px;">
+                目の前に「高速道路」への入り口がある。<br>
+                アクセルを踏むか、Uターンして下道に戻るか。
+            </h2>
+            
+            <p style="font-size: 1.3rem; margin-bottom: 50px; line-height: 1.8;">
+                お前の目の前には、2つのボタンがあるわけじゃない。<br>
+                あるのは<span class="marker" style="background: linear-gradient(transparent 60%, var(--color-accent) 60%);"><strong>「成功への直通ボタン」</strong></span>だけだ。<br>
+                押さないという選択肢は、現状維持=緩やかな死を意味する。
+            </p>
+
+            <a href="https://utage-system.com/p/XXXXXXXXX" class="cta-button" style="font-size: 1.6rem; padding: 35px 70px;">
+                今すぐDRMランチパッケージを注文する
+            </a>
+            
+            <p class="cta-guarantee">
+                <span class="guarantee-badge">30日間全額返金保証付き</span>
+            </p>
+
+            <p style="margin-top: 40px; font-size: 1.1rem; opacity: 0.9;">
+                手続きは3分で終わる。<br>
+                その3分が、お前の向こう30年を変える。
+            </p>
+        </div>
+    </section>
+
+    <!-- PS Section -->
+    <section>
+        <div class="container">
+            <div class="ps-section">
+                <p class="ps-title">追伸1:</p>
+                <h3 style="font-size: 1.5rem; margin-bottom: 20px;">「明日やろう」は馬鹿野郎だ。</h3>
+                <p>
+                    厳しいことを言い続けたが、これは全てお前への愛だ。<br>
+                    俺は、才能ある人間が、くだらない理由で埋もれていくのが我慢ならないんだ。
+                </p>
+                <p style="margin-top: 20px;">
+                    今、お前の心臓は高鳴っているはずだ。<br>
+                    それは「恐怖」じゃない。<span class="marker"><strong>「武者震い」</strong></span>だ。<br>
+                    その直感を信じろ。<br>
+                    自分の直感を信じられない奴が、他人(客)を信じさせることなんてできないぞ。
+                </p>
+            </div>
+
+            <div class="ps-section">
+                <p class="ps-title">追伸2:</p>
+                <h3 style="font-size: 1.5rem; margin-bottom: 20px;">お前は一人じゃない。<br>俺が「共犯者」になる。</h3>
+                <p>
+                    申し込みボタンを押した瞬間から、俺たちは他人じゃなくなる。<br>
+                    お前のビジネスを成功させるための、運命共同体だ。
+                </p>
+                <p style="margin-top: 20px;">
+                    泥臭い作業は俺たち(AIと職人)がやる。<br>
+                    お前は、スポットライトを浴びて輝け。<br>
+                    そのための舞台装置は、俺が完璧に整えてやる。
+                </p>
+            </div>
+
+            <div class="ps-section">
+                <p class="ps-title">追伸3:</p>
+                <h3 style="font-size: 1.5rem; margin-bottom: 20px;">この手紙は、あと数時間で読めなくなるかもしれない。</h3>
+                <p>
+                    冒頭でも言ったが、毎月3社が限界だ。<br>
+                    すでに数名の申し込みが入っている通知が来ている。
+                </p>
+                <p style="margin-top: 20px;">
+                    もしかしたら、お前がクレジットカードを取りに行っている間に、<br>
+                    <strong>[SOLD OUT]</strong> に変わるかもしれない。
+                </p>
+                <p style="margin-top: 30px; font-size: 1.3rem; font-weight: 900;">
+                    後悔するなよ。<br>
+                    人生を変えるチャンスは、今、お前の指先にある。
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px; padding: 50px; background: var(--color-bg-light);">
+                <p style="font-size: 1.5rem; margin-bottom: 30px; font-weight: 700;">
+                    さあ、こっち側の世界に来い。<br>
+                    待っているぞ。
+                </p>
+                <a href="https://utage-system.com/p/XXXXXXXXX" class="cta-button">
+                    運命を変えるクリックはこちら
+                </a>
+                <p class="cta-guarantee">
+                    <span class="guarantee-badge">30日間全額返金保証・特典付き</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="margin-bottom: 15px;">
+                <a href="#">特定商取引法に基づく表記</a>
+                <a href="#">プライバシーポリシー</a>
+            </p>
+            <p>&copy; 2026 SAKIMURA. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA for Mobile -->
+    <div class="sticky-cta" style="display: none;">
+        <a href="https://utage-system.com/p/XXXXXXXXX" class="cta-button">
+            今すぐ申し込む
+        </a>
+    </div>
+
+    <script>
+        // Show sticky CTA on mobile when scrolling
+        if (window.innerWidth <= 768) {
+            const stickyCTA = document.querySelector('.sticky-cta');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    stickyCTA.style.display = 'block';
+                } else {
+                    stickyCTA.style.display = 'none';
+                }
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
